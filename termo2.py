@@ -41,19 +41,19 @@ st.set_page_config(
 
 def app(RU,CURSO,entrada,PriVenc,parcelas,ValorParce,valor_negoc,juridico): 
 
-    caminho_chromedriver = r"C:\Users\92006388\OneDrive - Uninter\chromedriver.exe"
+    caminho_chromedriver = "chromedriver.exe"
     servico = ChromeService(executable_path=caminho_chromedriver)
 
     # Configurar as opções do Chrome para executar em modo headless
-    # chrome_options = Options()
-    # chrome_options.add_argument("--headless")
-    # chrome_options.add_argument("--window-size=1920,1080")  
-    # chrome_options.add_argument("--disable-gpu")  # Necessário para evitar erros em alguns sistemas
-    # chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--window-size=1920,1080")  
+    chrome_options.add_argument("--disable-gpu")  # Necessário para evitar erros em alguns sistemas
+    chrome_options.add_argument("--disable-dev-shm-usage")
 
     # Inicializar o navegador Chrome com as opções configuradas
-    # navegador = webdriver.Chrome(service=servico, options=chrome_options)
-    navegador = webdriver.Chrome(service=servico)
+    navegador = webdriver.Chrome(service=servico, options=chrome_options)
+    # navegador = webdriver.Chrome(service=servico)
 
     alerta=Alert(navegador)
 
@@ -278,7 +278,7 @@ def app(RU,CURSO,entrada,PriVenc,parcelas,ValorParce,valor_negoc,juridico):
     navegador.get(f'https://sicob.uninter.com/Login')  
     navegador.get(f'https://sicob.uninter.com/Login')  
     navegador.find_element(By.XPATH,'/html/body/div/div/form/div/a/button').click()
-    RU=3657555
+    
     navegador.maximize_window()
     while len(navegador.find_elements(By.CLASS_NAME,'form-control-top-pesquisa')) < 1:
         time.sleep(0.5)
